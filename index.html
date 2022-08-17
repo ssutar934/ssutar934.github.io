@@ -20,7 +20,6 @@
     <script src="../JavaScript/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="../JavaScript/salesdata.js" type="text/javascript"></script>
 
-
     <link href="../StyleSheet/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link href="../StyleSheet/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../StyleSheet/Button.css" rel="stylesheet" type="text/css" />
@@ -119,6 +118,7 @@
         <div style="margin-left: 20px;margin-top: 20px;">
             <input style="width: 240px;" type="file" id="file_upload" />
             <button class="button-33" onclick="upload()">Upload</button>
+            <button id="btnsamplexcel" class="button-33" style="margin-left: 100px;">samplexcel</button>
         </div>
 
         <div>
@@ -132,10 +132,22 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="dialog" title="jQuery Dialog" width="600" style="display:none">
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-12">
+                    <table id="sampleexcel"></table>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
     <script type="text/javascript">
-        var grid, grid2;
+        var grid, grid2, excelsample;
         $('#detailedtrack').css('display', 'none');
         $(document).ready(function () {
 
@@ -179,7 +191,7 @@
             $('#btntask1').trigger('click');
 
             grid2 = $('#grid2').grid({
-                primaryKey: 'OrderNo',
+                primaryKey: 'StoreNo',
                 dataSource: [],
                 uiLibrary: 'bootstrap',
                 columns: [
@@ -196,6 +208,31 @@
              const interval = setInterval(function () {
                  get_max_sale_data
              }, min); */
+
+            let sampleexceldata = [
+                { StoreNo: '21581', StoreName: 'ABC', Branch: 'abc', Amount: '56987' },
+                { StoreNo: '21582', StoreName: 'XYZ', Branch: 'xyz', Amount: '658932' }
+            ]
+
+            excelsample = $('#sampleexcel').grid({
+                primaryKey: 'StoreNo',
+                dataSource: sampleexceldata,
+                uiLibrary: 'bootstrap',
+                columns: [
+                    { field: 'StoreNo', width: 100 },
+                    { field: 'StoreName', sortable: false },
+                    { field: 'Branch', title: 'Branch', sortable: false },
+                    { field: 'Amount', title: 'Amount(¥)', sortable: false }
+                ]
+            });
+
+            $('#btnsamplexcel').on('click', function () {
+                dialog = $("#dialog").dialog({
+                    resizable: false,
+                    modal: true,
+                    title: 'Excel Format'
+                });
+            });
 
         });
     </script>
