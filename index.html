@@ -1,0 +1,154 @@
+﻿<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>sales</title>
+</head>
+<body>
+    <h4>Welcome</h4>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Grid Bootstrap</title>
+    <meta charset="utf-8" />
+
+    <script src="../JavaScript/jquery.min.js"></script>
+    <script src="../JavaScript/gijgo.min.js" type="text/javascript"></script>
+    <script src="../JavaScript/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../JavaScript/salesdata.js" type="text/javascript"></script>
+
+
+    <link href="../StyleSheet/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="../StyleSheet/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../StyleSheet/Button.css" rel="stylesheet" type="text/css" />
+    <link href="../StyleSheet/detailedtrack.css" rel="stylesheet" type="text/css" />
+    <link href="../StyleSheet/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+
+    <div class="container-full">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-xs-8">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input id="txtName" type="text" placeholder="Product..." class="form-control" />
+                    </div>
+                    <button id="btnSearch" type="button" class="btn btn-default">Search</button>
+                    <button id="btnClear" type="button" class="btn btn-default">Clear</button>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-xs-12">
+                <table id="grid"></table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <label style="margin-left: 22px; margin-top: 15px; font-style: italic; font-family: initial; font-size: larger; color: crimson;">Please select order from list for tracking details </label>
+    </div>
+    <div id="detailedtrack" style="margin-top: -85px;">
+        <div class="container px-1 px-md-4 py-5 mx-auto">
+            <div class="card">
+                <div class="row d-flex justify-content-between px-3 top">
+                    <div class="d-flex">
+                        <h5>ORDER No : <span id="orderno" class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                    </div>
+                    <div class="d-flex flex-column text-sm-right">
+                        <p class="mb-0">Expected Arrival : <span id="arrivedate">01/12/19</span></p>
+                    </div>
+                </div>
+                <!-- Add class 'active' to progress -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <ul id="progressbar" class="text-center">
+                            <li id="st01" class="active step0"></li>
+                            <li id="st02" class="active step0"></li>
+                            <li id="st03" class="active step0"></li>
+                            <li id="st04" class="step0"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row justify-content-between top">
+                    <div class="row d-flex icon-content">
+                        <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                        <div class="d-flex flex-column">
+                            <p class="font-weight-bold">Order<br>Processed</p>
+                        </div>
+                    </div>
+                    <div class="row d-flex icon-content">
+                        <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                        <div class="d-flex flex-column">
+                            <p class="font-weight-bold">Order<br>Shipped</p>
+                        </div>
+                    </div>
+                    <div class="row d-flex icon-content">
+                        <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                        <div class="d-flex flex-column">
+                            <p class="font-weight-bold">Order<br>En Route</p>
+                        </div>
+                    </div>
+                    <div class="row d-flex icon-content">
+                        <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                        <div class="d-flex flex-column">
+                            <p class="font-weight-bold">Order<br>Arrived</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var grid;
+        $('#detailedtrack').css('display', 'none');
+        $(document).ready(function () {
+
+            let data = get_order_details();
+
+            grid = $('#grid').grid({
+                primaryKey: 'OrderNo',
+                dataSource: data,
+                uiLibrary: 'bootstrap',
+                columns: [
+                    { field: 'OrderNo', width: 100 },
+                    { field: 'Product', sortable: true },
+                    { field: 'Quantity', title: 'Quantity', sortable: false },
+                    { field: 'Status', title: 'Status', sortable: true }
+                ],
+                pager: { limit: 5 }
+            });
+            grid.on('rowSelect', function (e, $row, id, record) {
+                detailedordertrack(record);
+            });
+
+            grid.on('rowDataBound', function (e, $row, id, record) {
+                //if (record.Status === 'Completed') {
+                //    $row.css('background-color', '#CCCCCC');
+                //}
+                //else if (record.Status === 'Cancelled') {
+                //    $row.css('background-color', '#ffd6c7');
+                //}
+            });
+
+
+            $('#btnSearch').on('click', function () {
+                grid.reload({ Product: $('#txtName').val() });
+            });
+            $('#btnClear').on('click', function () {
+                $('#txtName').val('');
+                $('#txtPlaceOfBirth').val('');
+                grid.reload({ Product: '' });
+            });
+
+            $('#btnClear').trigger('click');
+        });
+    </script>
+</body>
+</html>
