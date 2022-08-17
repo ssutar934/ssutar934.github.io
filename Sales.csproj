@@ -82,6 +82,7 @@
     <Content Include="JavaScript\JavaScript.js" />
     <Content Include="JavaScript\jquery.min.js" />
     <Content Include="JavaScript\salesdata.js" />
+    <Content Include="JavaScript\xlsx.min.js" />
     <Content Include="SalesHandler.asmx" />
     <Content Include="StyleSheet\bootstrap.min.css" />
     <Content Include="StyleSheet\Button.css" />

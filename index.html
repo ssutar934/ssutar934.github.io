@@ -27,91 +27,115 @@
     <link href="../StyleSheet/detailedtrack.css" rel="stylesheet" type="text/css" />
     <link href="../StyleSheet/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-
+    <script src="../JavaScript/xlsx.min.js" type="text/javascript"></script>
 
 </head>
 <body>
 
     <div style="margin:5px">
-        <button>Task 1</button>
-        <button>Task 2</button>
+        <button id="btntask1" class="button-33">Task 1</button>
+        <button id="btntask2" class="button-33">Task 2</button>
     </div>
 
-    <div class="container-full">
-        <div class="row" style="margin-top: 10px">
-            <div class="col-xs-8">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input id="txtName" type="text" placeholder="Product..." class="form-control" />
-                    </div>
-                    <button id="btnSearch" type="button" class="btn btn-default">Search</button>
-                    <button id="btnClear" type="button" class="btn btn-default">Clear</button>
-                </form>
+    <div style="margin: 7px; border: 1px solid; background: black;"></div>
+
+    <div id="task1">
+        <div class="container-full">
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-8">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input id="txtName" type="text" placeholder="Product..." class="form-control" />
+                        </div>
+                        <button id="btnSearch" type="button" class="btn btn-default">Search</button>
+                        <button id="btnClear" type="button" class="btn btn-default">Clear</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-12">
+                    <table id="grid"></table>
+                </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 10px">
-            <div class="col-xs-12">
-                <table id="grid"></table>
+        <div>
+            <label style="margin-left: 22px; margin-top: 15px; font-style: italic; font-family: initial; font-size: larger; color: crimson;">Please select order from list for tracking details </label>
+        </div>
+        <div id="detailedtrack" style="margin-top: -85px;">
+            <div class="container px-1 px-md-4 py-5 mx-auto">
+                <div class="card">
+                    <div class="row d-flex justify-content-between px-3 top">
+                        <div class="d-flex">
+                            <h5>ORDER No : <span id="orderno" class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                        </div>
+                        <div class="d-flex flex-column text-sm-right">
+                            <p class="mb-0">Expected Arrival : <span id="arrivedate">01/12/19</span></p>
+                        </div>
+                    </div>
+                    <!-- Add class 'active' to progress -->
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <ul id="progressbar" class="text-center">
+                                <li id="st01" class="active step0"></li>
+                                <li id="st02" class="active step0"></li>
+                                <li id="st03" class="active step0"></li>
+                                <li id="st04" class="step0"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between top">
+                        <div class="row d-flex icon-content">
+                            <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                            <div class="d-flex flex-column">
+                                <p class="font-weight-bold">Order<br>Processed</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex icon-content">
+                            <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                            <div class="d-flex flex-column">
+                                <p class="font-weight-bold">Order<br>Shipped</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex icon-content">
+                            <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                            <div class="d-flex flex-column">
+                                <p class="font-weight-bold">Order<br>En Route</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex icon-content">
+                            <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                            <div class="d-flex flex-column">
+                                <p class="font-weight-bold">Order<br>Arrived</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div>
-        <label style="margin-left: 22px; margin-top: 15px; font-style: italic; font-family: initial; font-size: larger; color: crimson;">Please select order from list for tracking details </label>
-    </div>
-    <div id="detailedtrack" style="margin-top: -85px;">
-        <div class="container px-1 px-md-4 py-5 mx-auto">
-            <div class="card">
-                <div class="row d-flex justify-content-between px-3 top">
-                    <div class="d-flex">
-                        <h5>ORDER No : <span id="orderno" class="text-primary font-weight-bold">#Y34XDHR</span></h5>
-                    </div>
-                    <div class="d-flex flex-column text-sm-right">
-                        <p class="mb-0">Expected Arrival : <span id="arrivedate">01/12/19</span></p>
-                    </div>
-                </div>
-                <!-- Add class 'active' to progress -->
-                <div class="row d-flex justify-content-center">
-                    <div class="col-12">
-                        <ul id="progressbar" class="text-center">
-                            <li id="st01" class="active step0"></li>
-                            <li id="st02" class="active step0"></li>
-                            <li id="st03" class="active step0"></li>
-                            <li id="st04" class="step0"></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row justify-content-between top">
-                    <div class="row d-flex icon-content">
-                        <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
-                        <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Order<br>Processed</p>
-                        </div>
-                    </div>
-                    <div class="row d-flex icon-content">
-                        <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
-                        <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Order<br>Shipped</p>
-                        </div>
-                    </div>
-                    <div class="row d-flex icon-content">
-                        <img class="icon" src="https://i.imgur.com/TkPm63y.png">
-                        <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Order<br>En Route</p>
-                        </div>
-                    </div>
-                    <div class="row d-flex icon-content">
-                        <img class="icon" src="https://i.imgur.com/HdsziHP.png">
-                        <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Order<br>Arrived</p>
-                        </div>
-                    </div>
+
+    <div id="task2">
+
+        <div style="margin-left: 20px;margin-top: 20px;">
+            <input style="width: 240px;" type="file" id="file_upload" />
+            <button class="button-33" onclick="upload()">Upload</button>
+        </div>
+
+        <div>
+            <label style="margin-left: 22px; margin-top: 15px; font-style: italic; font-family: initial; font-size: larger; color: crimson;">Top 5 stores (max. sales - refresh in every 10 min)</label>
+        </div>
+
+        <div class="container-full">
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-12">
+                    <table id="grid2"></table>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        var grid;
+        var grid, grid2;
         $('#detailedtrack').css('display', 'none');
         $(document).ready(function () {
 
@@ -133,16 +157,6 @@
                 detailedordertrack(record);
             });
 
-            grid.on('rowDataBound', function (e, $row, id, record) {
-                //if (record.Status === 'Completed') {
-                //    $row.css('background-color', '#CCCCCC');
-                //}
-                //else if (record.Status === 'Cancelled') {
-                //    $row.css('background-color', '#ffd6c7');
-                //}
-            });
-
-
             $('#btnSearch').on('click', function () {
                 grid.reload({ Product: $('#txtName').val() });
             });
@@ -152,7 +166,37 @@
                 grid.reload({ Product: '' });
             });
 
+            $('#btntask1').on('click', function () {
+                $('#task1').css('display', '');
+                $('#task2').css('display', 'none');
+            });
+            $('#btntask2').on('click', function () {
+                $('#task1').css('display', 'none');
+                $('#task2').css('display', '');
+            });
+
             $('#btnClear').trigger('click');
+            $('#btntask1').trigger('click');
+
+            grid2 = $('#grid2').grid({
+                primaryKey: 'OrderNo',
+                dataSource: [],
+                uiLibrary: 'bootstrap',
+                columns: [
+                    { field: 'StoreNo', width: 100 },
+                    { field: 'StoreName', sortable: false },
+                    { field: 'Branch', title: 'Branch', sortable: false },
+                    { field: 'Amount', title: 'Amount(¥)', sortable: false }
+                ]
+            });
+
+            /* Get records from web service in every 10 min - commented for now*/
+
+            /* let min = 600000 // 600000 milisecoinds = 10 min
+             const interval = setInterval(function () {
+                 get_max_sale_data
+             }, min); */
+
         });
     </script>
 </body>
