@@ -84,6 +84,7 @@
     <Content Include="JavaScript\salesdata.js" />
     <Content Include="JavaScript\xlsx.min.js" />
     <Content Include="SalesHandler.asmx" />
+    <Content Include="StyleSheet\bootstrap-glyphicons.css" />
     <Content Include="StyleSheet\bootstrap.min.css" />
     <Content Include="StyleSheet\Button.css" />
     <Content Include="StyleSheet\checkbox.min.css" />
